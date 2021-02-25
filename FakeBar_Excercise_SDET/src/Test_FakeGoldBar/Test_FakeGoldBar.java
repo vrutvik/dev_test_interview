@@ -18,6 +18,7 @@ public class Test_FakeGoldBar {
 	static void input_values() {
 		int k;
 		int j;
+		//enter values in chunks of 3. each sides.
 		for(k=i;k<x;k++) {
 			String S = k+"";
 		driver.findElementByXPath("//div[@class='board-row']//input[@id='left_"+S+"']").clear();
@@ -31,6 +32,7 @@ public class Test_FakeGoldBar {
 		driver.findElementByXPath("//*[@id='weigh']").click();
 		String op = driver.findElementByXPath("//div[@class='result']//button[@id='reset']").getText();
 		if(op.equals('=')) {
+			//click on reset for next input
 			driver.findElementByXPath("//button[.='Reset']").click();
 			System.out.println("Reset");
 			x=+3;
@@ -41,6 +43,7 @@ public class Test_FakeGoldBar {
 			input_values();
 		}
 		else {
+			/// if the operator element in middle is < or > then it will check the results at the bottom of the matrix. 
 			check_values();
 		
 		}
@@ -55,7 +58,6 @@ public class Test_FakeGoldBar {
 			String Al_m = driver.switchTo().alert().getText();
 			if(Al_m==result) {
 				System.out.println("We got the results."+Al_m);
-				System.exit(1);
 			}
 			al.accept();
 			System.out.println("click on accept & checking values");
